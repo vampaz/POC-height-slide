@@ -1,67 +1,65 @@
 (function () {
-    document.addEventListener("DOMContentLoaded", function () {
-        document
-            .getElementById("accordion")
-            .addEventListener("click", function (event) {
-                var el = event.target;
 
-                if (el.getAttribute("role") === "tab") {
-
-                    accordionBody = el.nextElementSibling;
-
-                    if (accordionBody.getAttribute("aria-expanded") === "false") {
-                        play(el);
-                        accordionBody.setAttribute("aria-expanded", true);
-                    }
-
-                    else {
-                        reverse(el);
-
-                        setTimeout(function () {
-                            accordionBody.setAttribute("aria-expanded", false);
-                        }, 400);
-                    }
-
-                }
-            });
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('accordion').addEventListener('click', function (event) {
+            slideY(event.target);
+        });
     });
 
-    function play(el) {
-        console.log(el);
+    function slideY(el) {
+        const duration = 300;
 
-        var parent = el.parentElement;
-        var elH = el.offsetHeight;
-        parent.style.cssText = `height:${elH}px;`;
+        let parent = undefined;
+        let accordionBody = undefined;
 
-// Get the content height
-        var accordionBody = el.nextElementSibling;
-        accordionBody.classList.add('preRender');
-        var accordionBodyH = accordionBody.offsetHeight;
-        accordionBody.classList.remove('preRender');
+        if (el && el.getAttribute('role') === 'tab') {
+            parent = el.parentNode;
+            accordionBody = el.nextElementSibling;
 
-//set parent height
-        accordionBody.style.cssText = `height:${accordionBodyH}px;display:block;position:relative;top:-${accordionBodyH}px`;
-        parent.style.cssText = `height:${elH}px;position:relative;`;
-        parent.style.cssText = `height:${elH + accordionBodyH}px;position:relative;`;
+            playAnimation(accordionBody.getAttribute('aria-expanded') === 'true');
 
-        setTimeout(function () {
-            accordionBody.style.top = 0;
-        }, 0);
+        }
 
-    }
+        function playAnimation(invert) {
 
-    function reverse(el) {
+            let elH = el.offsetHeight;
 
-        var parent = el.parentElement;
-        var elH = el.offsetHeight;
-        parent.style.cssText = `height:${elH}px`;
+            accordionBody.classList.add('preRender');
+            let accordionBodyH = accordionBody.offsetHeight - 3;
+            accordionBody.classList.remove('preRender');
 
-// Get the content height
-        var accordionBody = el.nextElementSibling;
-        var accordionBodyH = accordionBody.offsetHeight;
+            let stepsTop = [
+                {transform: `translate3d(0, ${-accordionBodyH}px, 0)`},
+                {transform: 'translate3d(0,0px,0px)'}
+            ];
 
-//set parent height
-        accordionBody.style.top = `-${accordionBodyH}px`;
+            let setpsHeight = [
+                {height: elH + 'px'},
+                {height: elH + accordionBodyH + 'px'}
+            ];
+
+            let config = {
+                duration: duration,
+                iterations: 1,
+                fill: 'forwards',
+                easing: 'ease-in',
+                direction: invert ? 'reverse' : 'normal',
+            };
+
+            let animationT = accordionBody.animate(stepsTop, config);
+            parent.animate(setpsHeight, config);
+
+            if (!invert) {
+                accordionBody.setAttribute('aria-expanded', 'true');
+            }
+
+            else {
+                animationT.onfinish = function () {
+                    accordionBody.setAttribute('aria-expanded', 'false');
+                }
+            }
+
+        }
 
     }
 

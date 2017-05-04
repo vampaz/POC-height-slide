@@ -4,7 +4,6 @@
  */
 :root {
     --color1: 76, 199, 238;
-    --anim-duration: 200ms;
 }
 
 .accordion {
@@ -14,9 +13,8 @@
 }
 
 section {
-    overflow:hidden;
-    position:relative;
-    transition: all var(--anim-duration) ease-in
+    overflow: hidden;
+    position: relative;
 }
 
 svg {
@@ -32,42 +30,21 @@ svg {
     cursor: pointer;
 }
 
-.accordion-body {
-    position: relative;
-    transition: top var(--anim-duration) ease-in
-}
+
+
 
 .accordion-body[aria-expanded="false"] {
-    z-index: 0;
-    overflow: hidden;
-    padding:0;
     display: none;
-    /*animation: slideY var(--anim-duration) ease-in reverse;*/
 }
 
 .accordion-body[aria-expanded="true"] {
-    transform: none;
-    /*animation: slideY var(--anim-duration) ease-in;*/
-}
-
-
-
-@keyframes slideY {
-    0% {
-        transform: translate3d(0, -100%, 0);
-
-    }
-
-    100% {
-        transform: translate3d(0, 0%, 0);
-
-        overflow: auto;
-    }
+    display: block;
 }
 
 .preRender.accordion-body[aria-expanded="false"] {
     position: absolute;
     display: block;
+    overflow: hidden;
     width: 100%;
 }
 
