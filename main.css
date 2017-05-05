@@ -1,21 +1,27 @@
-/**
- * Copyright (c) 2015 - 2017, EV-Box. All rights reserved.
- * EV-BOX PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 :root {
     --color1: 76, 199, 238;
     --anim-duration: 200ms;
 }
 
-.accordion {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    overflow: hidden;
+html, body {
+    min-height: 100%;
+    height: 100%;
 }
 
-section {
-    overflow:hidden;
-    position:relative;
-    transition: height var(--anim-duration) ease-in
+.accordion {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: auto;
+    border-radius: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    min-height: 100%;
+}
+
+@media screen and (min-width: 40em) {
+    .accordion {
+        max-width: 50vw;
+    }
 }
 
 svg {
@@ -24,11 +30,26 @@ svg {
 }
 
 .accordion-title {
-    position: relative;
-    z-index: 10;
     background: rgb(var(--color1));
+    color: #ffffff;
     padding: .5rem 1rem;
     cursor: pointer;
+}
+
+section:nth-child(even) .accordion-title {
+    background: rgba(var(--color1), .95);
+}
+
+/*Stuff for behaviour and animation*/
+section {
+    overflow: hidden;
+    position: relative;
+    transition: height var(--anim-duration) ease-in
+}
+
+.accordion-title {
+    position: relative;
+    z-index: 10;
 }
 
 .accordion-body {
@@ -38,13 +59,13 @@ svg {
 .accordion-body[aria-expanded="false"] {
     z-index: 0;
     overflow: hidden;
-    padding:0;
+    padding: 0;
     display: none;
 }
 
 .accordion-body[aria-expanded="true"] {
-    display:block;
-    position:relative;
+    display: block;
+    position: relative;
 }
 
 .preRender.accordion-body[aria-expanded="false"] {
@@ -52,4 +73,5 @@ svg {
     display: block;
     width: 100%;
 }
+
 
