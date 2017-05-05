@@ -4,17 +4,18 @@
  */
 :root {
     --color1: 76, 199, 238;
+    --anim-duration: 200ms;
 }
 
 .accordion {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    width: 50rem;
     overflow: hidden;
 }
 
 section {
-    overflow: hidden;
-    position: relative;
+    overflow:hidden;
+    position:relative;
+    transition: height var(--anim-duration) ease-in
 }
 
 svg {
@@ -30,21 +31,25 @@ svg {
     cursor: pointer;
 }
 
-
-
+.accordion-body {
+    transition: transform var(--anim-duration) ease-in
+}
 
 .accordion-body[aria-expanded="false"] {
+    z-index: 0;
+    overflow: hidden;
+    padding:0;
     display: none;
 }
 
 .accordion-body[aria-expanded="true"] {
-    display: block;
+    display:block;
+    position:relative;
 }
 
 .preRender.accordion-body[aria-expanded="false"] {
     position: absolute;
     display: block;
-    overflow: hidden;
     width: 100%;
 }
 
