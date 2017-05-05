@@ -9,7 +9,6 @@
 
 .accordion {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    width: 50rem;
     overflow: hidden;
 }
 
@@ -42,27 +41,10 @@ svg {
     overflow: hidden;
     padding:0;
     display: none;
-    /*animation: slideY var(--anim-duration) ease-in reverse;*/
 }
 
 .accordion-body[aria-expanded="true"] {
     transform: none;
-    /*animation: slideY var(--anim-duration) ease-in;*/
-}
-
-
-
-@keyframes slideY {
-    0% {
-        transform: translate3d(0, -100%, 0);
-
-    }
-
-    100% {
-        transform: translate3d(0, 0%, 0);
-
-        overflow: auto;
-    }
 }
 
 .preRender.accordion-body[aria-expanded="false"] {
