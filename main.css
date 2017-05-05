@@ -15,7 +15,7 @@
 section {
     overflow:hidden;
     position:relative;
-    transition: all var(--anim-duration) ease-in
+    transition: height var(--anim-duration) ease-in
 }
 
 svg {
@@ -33,7 +33,7 @@ svg {
 
 .accordion-body {
     position: relative;
-    transition: top var(--anim-duration) ease-in
+    transition: transform var(--anim-duration) ease-in
 }
 
 .accordion-body[aria-expanded="false"] {

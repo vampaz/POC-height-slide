@@ -7,7 +7,7 @@
     });
 
     function slideY(el) {
-        const duration = 300;
+        const duration = 200;
 
         let parent = undefined;
         let accordionBody = undefined;
@@ -29,17 +29,19 @@
 
             if (!invert) {
                 accordionBody.setAttribute('aria-expanded', 'true');
-                accordionBody.style.cssText = `height:${accordionBodyH}px;display:block;position:relative;top:-${accordionBodyH}px`;
+                accordionBody.style.cssText = `height:${accordionBodyH}px;display:block;position:relative;transform: translate3d(0,-${accordionBodyH}px,0)`;
                 parent.style.cssText = `height:${elH}px;position:relative;`;
 
                 setTimeout(function () {
+                    console.log('yupi');
+                    accordionBody.style.transform = 'translate3d(0,0,0)';
                     parent.style.cssText = `height:${elH + accordionBodyH}px;position:relative;`;
-                    accordionBody.style.top = 0;
-                }, 0);
+                }, 50);
             } else {
                 parent.style.cssText = `height:${elH}px`;
-                accordionBody.style.top = `-${accordionBodyH}px`;
-                setTimeout(function () {
+                // accordionBody.style.top = `-${accordionBodyH}px`;
+                accordionBody.style.transform = `translate3d(0,-${accordionBodyH}px,0)`
+                    setTimeout(function () {
                     accordionBody.setAttribute("aria-expanded", false);
                 }, duration);
             }
