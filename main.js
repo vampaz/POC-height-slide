@@ -43,7 +43,7 @@
                 iterations: 1,
                 fill: 'forwards',
                 easing: 'ease-in',
-                direction: invert ? 'reverse' : 'normal',
+                direction: invert ? 'reverse' : 'normal'
             };
 
             let animationT = accordionBody.animate(stepsTop, config);
