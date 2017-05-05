@@ -15,9 +15,7 @@
         if (el && el.getAttribute('role') === 'tab') {
             parent = el.parentNode;
             accordionBody = el.nextElementSibling;
-
             playAnimation(accordionBody.getAttribute('aria-expanded') === 'true');
-
         }
 
         function playAnimation(invert) {
@@ -29,19 +27,17 @@
 
             if (!invert) {
                 accordionBody.setAttribute('aria-expanded', 'true');
-                accordionBody.style.cssText = `height:${accordionBodyH}px;display:block;position:relative;transform: translate3d(0,-${accordionBodyH}px,0)`;
-                parent.style.cssText = `height:${elH}px;position:relative;`;
+                accordionBody.style.cssText = `height:${accordionBodyH}px;transform: translate3d(0,-${accordionBodyH}px,0)`;
+                parent.style.cssText = `height:${elH}px;`;
 
                 setTimeout(function () {
-                    console.log('yupi');
                     accordionBody.style.transform = 'translate3d(0,0,0)';
-                    parent.style.cssText = `height:${elH + accordionBodyH}px;position:relative;`;
-                }, 50);
+                    parent.style.cssText = `height:${elH + accordionBodyH}px;`;
+                }, 100);
             } else {
                 parent.style.cssText = `height:${elH}px`;
-                // accordionBody.style.top = `-${accordionBodyH}px`;
                 accordionBody.style.transform = `translate3d(0,-${accordionBodyH}px,0)`
-                    setTimeout(function () {
+                setTimeout(function () {
                     accordionBody.setAttribute("aria-expanded", false);
                 }, duration);
             }

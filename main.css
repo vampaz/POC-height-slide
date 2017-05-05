@@ -32,7 +32,6 @@ svg {
 }
 
 .accordion-body {
-    position: relative;
     transition: transform var(--anim-duration) ease-in
 }
 
@@ -44,7 +43,8 @@ svg {
 }
 
 .accordion-body[aria-expanded="true"] {
-    transform: none;
+    display:block;
+    position:relative;
 }
 
 .preRender.accordion-body[aria-expanded="false"] {
