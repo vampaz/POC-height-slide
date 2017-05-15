@@ -36,9 +36,7 @@
                     accordionBody.style.transform = 'translate3d(0,0,0)';
                     parent.style.height = elH + accordionBodyH + 'px';
                 }, 100);
-                setTimeout(function () {
-                    accordionBody.style.transform = 'translate3d(0,0,0)';
-                }, 400);
+
             } else {
                 parent.style.height = elH + 'px';
                 accordionBody.style.transform = `translate3d(0,-${accordionBodyH}px,0)`
