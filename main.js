@@ -27,15 +27,20 @@
 
             if (!invert) {
                 accordionBody.setAttribute('aria-expanded', 'true');
-                accordionBody.style.cssText = `height:${accordionBodyH}px;transform: translate3d(0,-${accordionBodyH}px,0)`;
-                parent.style.cssText = `height:${elH}px;`;
+
+                parent.style.height = elH + 'px';
+                accordionBody.style.height = accordionBodyH + 'px';
+                accordionBody.style.transform = `translate3d(0,-${accordionBodyH}px,0)`;
 
                 setTimeout(function () {
                     accordionBody.style.transform = 'translate3d(0,0,0)';
-                    parent.style.cssText = `height:${elH + accordionBodyH}px;`;
+                    parent.style.height = elH + accordionBodyH + 'px';
                 }, 100);
+                setTimeout(function () {
+                    accordionBody.style.transform = 'translate3d(0,0,0)';
+                }, 400);
             } else {
-                parent.style.cssText = `height:${elH}px`;
+                parent.style.height = elH + 'px';
                 accordionBody.style.transform = `translate3d(0,-${accordionBodyH}px,0)`
                 setTimeout(function () {
                     accordionBody.setAttribute("aria-expanded", false);
