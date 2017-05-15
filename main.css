@@ -1,5 +1,6 @@
 :root {
-    --color1: 76, 199, 238;
+    --color1: 0,129,196;
+    --color2: 0,86,133;
     --anim-duration: 200ms;
 }
 
@@ -37,7 +38,7 @@ svg {
 }
 
 section:nth-child(even) .accordion-title {
-    background: rgba(var(--color1), .95);
+    background: rgb(var(--color2));
 }
 
 /*Stuff for behaviour and animation*/
@@ -66,6 +67,7 @@ section {
 .accordion-body[aria-expanded="true"] {
     display: block;
     position: relative;
+    overflow: auto;
 }
 
 .preRender.accordion-body[aria-expanded="false"] {
